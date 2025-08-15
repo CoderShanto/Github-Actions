@@ -10,9 +10,11 @@ jobs:
   say-hello:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
       - name: Show System Information
         run: uname -a
       - name: Print Hello World
         run: echo "Hello, world!"
       - name: Show current data
-        run: date  
+        run: date
