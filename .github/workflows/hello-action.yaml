@@ -10,11 +10,12 @@ jobs:
   list-changes:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository code
+      - name: Checkout repository code (with full history)
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  
 
       - name: List changed files since last commit
         run: |
           echo "Changed files are:"
-          git fetch origin main
-          git diff --name-only HEAD^ HEAD
+          git diff --name-only HEAD^ HEAD || echo "No previous commit to compare."
