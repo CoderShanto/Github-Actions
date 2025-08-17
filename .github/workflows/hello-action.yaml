@@ -1,20 +1,20 @@
-name: hello-world
+name: First Workflow
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  say-hello:
+  list-changes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v4
-      - name: Show System Information
-        run: uname -a
-      - name: Print Hello World
-        run: echo "Hello, world!"
-      - name: Show current data
-        run: date
+
+      - name: List changed files since last commit
+        run: |
+          echo "Changed files are:"
+          git fetch origin main
+          git diff --name-only HEAD^ HEAD

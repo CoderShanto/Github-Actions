@@ -1,0 +1,14 @@
+name: Second Workflow
+
+on:
+  workflow_run:
+    workflows: ["First Workflow"]   # must match exactly the name of first workflow
+    types:
+      - completed
+
+jobs:
+  run-second:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirmation
+        run: echo "✅ Second workflow triggered because First Workflow finished!"
